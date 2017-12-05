@@ -4,7 +4,7 @@ namespace Humantech\Zoho\Recruit\Api\Client;
 
 class AuthenticationClient extends AbstractClient implements AuthenticationClientInterface
 {
-    const API_AUTH_URL = 'https://accounts.zoho.com/apiauthtoken/nb/create?SCOPE=ZohoRecruit/recruitapi&EMAIL_ID=%s&PASSWORD=%s';
+    const API_AUTH_URL = 'https://accounts.zoho.eu/apiauthtoken/nb/create?SCOPE=ZohoRecruit/recruitapi&EMAIL_ID=%s&PASSWORD=%s';
 
     /**
      * @param  string $username
