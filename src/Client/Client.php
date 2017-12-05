@@ -12,7 +12,7 @@ use Humantech\Zoho\Recruit\Api\Unserializer\UnserializerBuilder;
 
 class Client extends AbstractClient implements ClientInterface
 {
-    const API_BASE_URL = 'https://recruit.zoho.com/recruit/private/%s/%s/%s?authtoken=%s';
+    const API_BASE_URL = 'https://recruit.zoho.eu/recruit/private/%s/%s/%s?authtoken=%s';
 
     const API_DEFAULT_VERSION = 2;
 
