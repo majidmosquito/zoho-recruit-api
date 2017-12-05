@@ -14,7 +14,7 @@ class AuthenticationClient extends AbstractClient implements AuthenticationClien
      */
     protected function getApiResponseAuthToken($username, $password)
     {
-        $response = $this->sendRequest('GET', sprintf(
+        $response = $this->sendRequest('POST', sprintf(
             self::API_AUTH_URL,
             urlencode($username),
             urlencode($password)
