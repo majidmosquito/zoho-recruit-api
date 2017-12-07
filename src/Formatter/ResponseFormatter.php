@@ -10,6 +10,8 @@ use Humantech\Zoho\Recruit\Api\Formatter\Response\MessageResponseFormatter;
 use Humantech\Zoho\Recruit\Api\Formatter\Response\DownloadFileResponseFormatter;
 use Humantech\Zoho\Recruit\Api\Formatter\Response\NoDataResponseFormatter;
 
+use Humantech\Zoho\Recruit\Api\Formatter\Response\AddRecordsResponseFormatter;
+
 class ResponseFormatter extends AbstractFormatter implements FormatterInterface
 {
     /**
@@ -23,6 +25,8 @@ class ResponseFormatter extends AbstractFormatter implements FormatterInterface
             $this->setFormatter(new DownloadFileResponseFormatter());
         } elseif (isset($data['response']['nodata'])) {
             $this->setFormatter(new NoDataResponseFormatter());
+        } elseif ($this->isMethod('addRecords') && isset($data['response']['result']['recorddetail'])) {
+            $this->setFormatter(new AddRecordsResponseFormatter );
         } elseif (isset($data['response']['result']['message']) || isset($data['response']['success']['message'])) {
             $this->setFormatter(new MessageResponseFormatter());
         } elseif (isset($data['response']['error'])) {
