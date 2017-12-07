@@ -41,10 +41,10 @@ class AddRecordsResponseFormatter implements FormatterInterface
         	if(!is_null($id)){
 				$this->data = $id;
         	}else{
-        		$this->data = $result['message'];
+        		$this->data = false;//$result['message'];
         	}
         }else{
-        	$this->data = $result['message'];
+        	$this->data = false;$result['message'];
         }
 
         return $this;
