@@ -25,7 +25,10 @@ class ResponseFormatter extends AbstractFormatter implements FormatterInterface
             $this->setFormatter(new DownloadFileResponseFormatter());
         } elseif (isset($data['response']['nodata'])) {
             $this->setFormatter(new NoDataResponseFormatter());
-        } elseif ($this->isMethod('addRecords') && isset($data['response']['result']['recorddetail'])) {
+        } elseif (isset($data['response']['result']['recorddetail']) 
+            && in_array($this->getMethod(), [
+                'addRecords', 'updateRecords'
+            ]) ) {
             $this->setFormatter(new AddRecordsResponseFormatter );
         } elseif (isset($data['response']['result']['message']) || isset($data['response']['success']['message'])) {
             $this->setFormatter(new MessageResponseFormatter());
