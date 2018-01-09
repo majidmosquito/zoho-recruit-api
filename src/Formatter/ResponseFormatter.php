@@ -46,6 +46,7 @@ class ResponseFormatter extends AbstractFormatter implements FormatterInterface
             'getAssociatedJobOpenings',
             'getAssociatedCandidates',
             'getSearchRecords',
+            'searchRecords',
         ))) {
             $this->setFormatter(new GenericResponseFormatter());
         }

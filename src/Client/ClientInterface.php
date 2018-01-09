@@ -184,4 +184,15 @@ interface ClientInterface
      * @return array
      */
     public function getSearchRecords($module, $selectColumns, $searchCondition, array $additionalParams, $responseFormat);
+
+    /**
+     * @param  string $module
+     * @param  string $selectColumns
+     * @param  mixed  $criteria
+     * @param  array  $additionalParams
+     * @param  string $responseFormat
+     *
+     * @return array
+     */
+    public function searchRecords($module, $selectColumns, $criteria, array $additionalParams, $responseFormat);
 }
