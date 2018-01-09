@@ -113,6 +113,7 @@ class Client extends AbstractClient implements ClientInterface
             'getModules',
             'getAssociatedCandidates',
             'getSearchRecords',
+            'searchRecords',
         ));
     }
 
@@ -513,6 +514,23 @@ class Client extends AbstractClient implements ClientInterface
 
         $additionalParams['selectColumns']   = $selectColumns;
         $additionalParams['searchCondition'] = $searchCondition;
+
+        $response = $this->sendRequest('GET', $this->getUri($module, $method, $responseFormat, $additionalParams));
+
+        $unserializedData = $this->getUnserializedData($response, $responseFormat);
+
+        return ResponseFormatter::create($module, $method)->formatter($unserializedData)->getOutput();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function searchRecords($module, $selectColumns, $criteria, array $additionalParams = array(), $responseFormat = self::API_RESPONSE_FORMAT_JSON)
+    {
+        $method = 'searchRecords';
+
+        $additionalParams['selectColumns']   = $selectColumns;
+        $additionalParams['criteria'] = $criteria;
 
         $response = $this->sendRequest('GET', $this->getUri($module, $method, $responseFormat, $additionalParams));
 
