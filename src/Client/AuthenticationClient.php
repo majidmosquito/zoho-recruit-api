@@ -4,8 +4,7 @@ namespace Humantech\Zoho\Recruit\Api\Client;
 
 class AuthenticationClient extends AbstractClient implements AuthenticationClientInterface
 {
-    const API_AUTH_URL = 'https://accounts.zoho.eu/apiauthtoken/nb/create?SCOPE=ZohoRecruit/recruitapi%2CZohoSearch/SearchAPI
-&EMAIL_ID=%s&PASSWORD=%s';
+    const API_AUTH_URL = 'https://accounts.zoho.eu/apiauthtoken/nb/create?SCOPE=%s&EMAIL_ID=%s&PASSWORD=%s';
 
     /**
      * @param  string $username
@@ -13,10 +12,11 @@ class AuthenticationClient extends AbstractClient implements AuthenticationClien
      *
      * @return string
      */
-    protected function getApiResponseAuthToken($username, $password)
+    protected function getApiResponseAuthToken($username, $password, $scope = 'ZohoRecruit/recruitapi')
     {
         $response = $this->sendRequest('POST', sprintf(
             self::API_AUTH_URL,
+            urlencode($scope),
             urlencode($username),
             urlencode($password)
         ));
@@ -27,9 +27,9 @@ class AuthenticationClient extends AbstractClient implements AuthenticationClien
     /**
      * @inheritdoc
      */
-    public function generateAuthToken($username, $password)
+    public function generateAuthToken($username, $password, $scope = 'ZohoRecruit/recruitapi')
     {
-        $content = $this->getApiResponseAuthToken($username, $password);
+        $content = $this->getApiResponseAuthToken($username, $password, $scope);
 
         if (strpos($content, 'RESULT=TRUE') === false) {
             preg_match('/CAUSE\=(\w*)/i', $content, $matches);
